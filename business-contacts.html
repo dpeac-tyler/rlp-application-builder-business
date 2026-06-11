@@ -153,197 +153,169 @@
 
             <h2 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem;">Business Contacts</h2>
 
+            <label class="usa-label" for="contact-instructions">Business Contact Instructions</label>
+            <div class="mock-editor">
+              <div class="mock-editor__toolbar">
+                <button type="button" class="mock-editor__btn" title="Undo">↩</button>
+                <button type="button" class="mock-editor__btn" title="Redo">↪</button>
+                <span class="mock-editor__separator">|</span>
+                <button type="button" class="mock-editor__btn" title="Style" style="font-size:1.2rem;">Normal ▾</button>
+                <span class="mock-editor__separator">|</span>
+                <button type="button" class="mock-editor__btn" title="Bold"><strong>B</strong></button>
+                <button type="button" class="mock-editor__btn" title="Italic"><em>I</em></button>
+                <button type="button" class="mock-editor__btn" title="Underline"><u>U</u></button>
+                <span class="mock-editor__separator">|</span>
+                <button type="button" class="mock-editor__btn" title="Link">&#128279;</button>
+                <span class="mock-editor__separator">|</span>
+                <button type="button" class="mock-editor__btn" title="Bullet List">&#8226;&#8801;</button>
+                <button type="button" class="mock-editor__btn" title="Numbered List">1.&#8801;</button>
+              </div>
+              <textarea class="mock-editor__textarea" id="contact-instructions" maxlength="2500" rows="4"></textarea>
+            </div>
+            <div class="fee-char-count" id="contact-instructions-count">2500 characters left</div>
+
             <!-- Column headers -->
-            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #dfe1e2; margin-bottom: 1rem;">
+            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #dfe1e2; margin-bottom: 1rem; margin-top: 30px;">
               <div style="font-weight: 700; font-size: 1.6rem;">Title</div>
               <div style="font-weight: 700; font-size: 1.6rem;">Description</div>
               <div style="font-weight: 700; font-size: 1.6rem;">Displayed</div>
+              <div style="font-weight: 700; font-size: 1.6rem;">Required</div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 2rem; align-items: center; padding: 2rem 0;">
-              <div style="font-size: 1.6rem;">Business Contacts</div>
-              <div style="font-size: 1.6rem;">Business Contacts</div>
+            <!-- Title -->
+            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: center; padding: 2rem 0;">
+              <div style="font-size: 1.6rem;">Title</div>
+              <div style="font-size: 1.6rem; color: #1b1b1b;">Manager, Partner, President etc.</div>
               <div>
                 <div class="usa-checkbox">
-                  <input class="usa-checkbox__input" id="bizcontacts-displayed" type="checkbox" name="bizcontacts-displayed">
-                  <label class="usa-checkbox__label" for="bizcontacts-displayed"></label>
+                  <input class="usa-checkbox__input" id="ct-title-displayed" type="checkbox" name="ct-title-displayed">
+                  <label class="usa-checkbox__label" for="ct-title-displayed"></label>
+                </div>
+              </div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-title-required" type="checkbox" name="ct-title-required" disabled>
+                  <label class="usa-checkbox__label" for="ct-title-required"></label>
                 </div>
               </div>
             </div>
 
-            <!-- Revealed when Displayed is checked -->
-            <div id="contacts-reveal" class="contacts-reveal">
-
-              <div style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.6rem;">Business Contact Instructions</div>
-              <div class="mock-editor">
-                <div class="mock-editor__toolbar">
-                  <button type="button" class="mock-editor__btn" title="Undo">↩</button>
-                  <button type="button" class="mock-editor__btn" title="Redo">↪</button>
-                  <span class="mock-editor__separator">|</span>
-                  <button type="button" class="mock-editor__btn" title="Style" style="font-size:1.2rem;">Normal ▾</button>
-                  <span class="mock-editor__separator">|</span>
-                  <button type="button" class="mock-editor__btn" title="Bold"><strong>B</strong></button>
-                  <button type="button" class="mock-editor__btn" title="Italic"><em>I</em></button>
-                  <button type="button" class="mock-editor__btn" title="Underline"><u>U</u></button>
-                  <button type="button" class="mock-editor__btn" title="Text Color"><u style="text-decoration-color:#e00; text-decoration-thickness:2px;">A</u></button>
-                  <span class="mock-editor__separator">|</span>
-                  <button type="button" class="mock-editor__btn" title="Link">&#128279;</button>
-                  <span class="mock-editor__separator">|</span>
-                  <button type="button" class="mock-editor__btn" title="Bullet List">&#8226;&#8801;</button>
-                  <button type="button" class="mock-editor__btn" title="Numbered List">1.&#8801;</button>
-                  <span class="mock-editor__separator">|</span>
-                  <button type="button" class="mock-editor__btn" title="Horizontal Rule">—</button>
-                  <span class="mock-editor__separator">|</span>
-                  <button type="button" class="mock-editor__btn" title="Align Left">&#8676;</button>
-                  <button type="button" class="mock-editor__btn" title="Align Right">&#8677;</button>
-                  <span class="mock-editor__separator">|</span>
-                  <button type="button" class="mock-editor__btn" title="Blockquote">&ldquo;</button>
-                  <button type="button" class="mock-editor__btn" title="Clear Formatting">T&#x2093;</button>
-                </div>
-                <textarea class="mock-editor__textarea" maxlength="2500" rows="4"></textarea>
-              </div>
-              <div class="fee-char-count">2500 characters left</div>
-
-              <div class="contacts-sub-table-header">
-                <div>Title</div>
-                <div>Description</div>
-                <div>Displayed</div>
-                <div>Required</div>
-              </div>
-
-              <!-- Title (locked) -->
-              <div class="contacts-sub-table-row">
-                <div>Title</div>
-                <div>Manager, Partner, President etc.</div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-title-displayed" type="checkbox" checked disabled>
-                    <label class="usa-checkbox__label" for="ct-title-displayed"></label>
-                  </div>
-                </div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-title-required" type="checkbox" checked disabled>
-                    <label class="usa-checkbox__label" for="ct-title-required"></label>
-                  </div>
+            <!-- First Name -->
+            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: center; padding: 2rem 0;">
+              <div style="font-size: 1.6rem;">First Name</div>
+              <div style="font-size: 1.6rem; color: #1b1b1b;">Business Contact First Name</div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-firstname-displayed" type="checkbox" name="ct-firstname-displayed">
+                  <label class="usa-checkbox__label" for="ct-firstname-displayed"></label>
                 </div>
               </div>
-
-              <!-- First Name (locked) -->
-              <div class="contacts-sub-table-row">
-                <div>First Name</div>
-                <div>Business Contact First Name</div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-firstname-displayed" type="checkbox" checked disabled>
-                    <label class="usa-checkbox__label" for="ct-firstname-displayed"></label>
-                  </div>
-                </div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-firstname-required" type="checkbox" checked disabled>
-                    <label class="usa-checkbox__label" for="ct-firstname-required"></label>
-                  </div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-firstname-required" type="checkbox" name="ct-firstname-required" disabled>
+                  <label class="usa-checkbox__label" for="ct-firstname-required"></label>
                 </div>
               </div>
+            </div>
 
-              <!-- Last Name (locked) -->
-              <div class="contacts-sub-table-row">
-                <div>Last Name</div>
-                <div>Business Contact Last Name</div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-lastname-displayed" type="checkbox" checked disabled>
-                    <label class="usa-checkbox__label" for="ct-lastname-displayed"></label>
-                  </div>
-                </div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-lastname-required" type="checkbox" checked disabled>
-                    <label class="usa-checkbox__label" for="ct-lastname-required"></label>
-                  </div>
+            <!-- Last Name -->
+            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: center; padding: 2rem 0;">
+              <div style="font-size: 1.6rem;">Last Name</div>
+              <div style="font-size: 1.6rem; color: #1b1b1b;">Business Contact Last Name</div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-lastname-displayed" type="checkbox" name="ct-lastname-displayed">
+                  <label class="usa-checkbox__label" for="ct-lastname-displayed"></label>
                 </div>
               </div>
-
-              <!-- Phone Number (optional) -->
-              <div class="contacts-sub-table-row">
-                <div>Phone Number</div>
-                <div>Business Contact Phone Number</div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-phone-displayed" type="checkbox">
-                    <label class="usa-checkbox__label" for="ct-phone-displayed"></label>
-                  </div>
-                </div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-phone-required" type="checkbox" disabled>
-                    <label class="usa-checkbox__label" for="ct-phone-required"></label>
-                  </div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-lastname-required" type="checkbox" name="ct-lastname-required" disabled>
+                  <label class="usa-checkbox__label" for="ct-lastname-required"></label>
                 </div>
               </div>
+            </div>
 
-              <!-- Alternate Phone Number (optional) -->
-              <div class="contacts-sub-table-row">
-                <div>Alternate Phone Number</div>
-                <div>Business Contact Alternate Phone Number</div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-altphone-displayed" type="checkbox">
-                    <label class="usa-checkbox__label" for="ct-altphone-displayed"></label>
-                  </div>
-                </div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-altphone-required" type="checkbox" disabled>
-                    <label class="usa-checkbox__label" for="ct-altphone-required"></label>
-                  </div>
+            <!-- Phone Number -->
+            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: center; padding: 2rem 0;">
+              <div style="font-size: 1.6rem;">Phone Number</div>
+              <div style="font-size: 1.6rem; color: #1b1b1b;">Business Contact Phone Number</div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-phone-displayed" type="checkbox" name="ct-phone-displayed">
+                  <label class="usa-checkbox__label" for="ct-phone-displayed"></label>
                 </div>
               </div>
-
-              <!-- Email Address (locked) -->
-              <div class="contacts-sub-table-row">
-                <div>Email Address</div>
-                <div>Business Contact Email Address</div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-email-displayed" type="checkbox" checked disabled>
-                    <label class="usa-checkbox__label" for="ct-email-displayed"></label>
-                  </div>
-                </div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-email-required" type="checkbox" checked disabled>
-                    <label class="usa-checkbox__label" for="ct-email-required"></label>
-                  </div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-phone-required" type="checkbox" name="ct-phone-required" disabled>
+                  <label class="usa-checkbox__label" for="ct-phone-required"></label>
                 </div>
               </div>
+            </div>
 
-              <!-- Alternate Email Address (optional) -->
-              <div class="contacts-sub-table-row">
-                <div>Alternate Email Address</div>
-                <div>Business Contact Alternate Email Address</div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-altemail-displayed" type="checkbox">
-                    <label class="usa-checkbox__label" for="ct-altemail-displayed"></label>
-                  </div>
-                </div>
-                <div>
-                  <div class="usa-checkbox">
-                    <input class="usa-checkbox__input" id="ct-altemail-required" type="checkbox" disabled>
-                    <label class="usa-checkbox__label" for="ct-altemail-required"></label>
-                  </div>
+            <!-- Alternate Phone Number -->
+            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: center; padding: 2rem 0;">
+              <div style="font-size: 1.6rem;">Alternate Phone Number</div>
+              <div style="font-size: 1.6rem; color: #1b1b1b;">Business Contact Alternate Phone Number</div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-altphone-displayed" type="checkbox" name="ct-altphone-displayed">
+                  <label class="usa-checkbox__label" for="ct-altphone-displayed"></label>
                 </div>
               </div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-altphone-required" type="checkbox" name="ct-altphone-required" disabled>
+                  <label class="usa-checkbox__label" for="ct-altphone-required"></label>
+                </div>
+              </div>
+            </div>
 
+            <!-- Email Address -->
+            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: center; padding: 2rem 0;">
+              <div style="font-size: 1.6rem;">Email Address</div>
+              <div style="font-size: 1.6rem; color: #1b1b1b;">Business Contact Email Address</div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-email-displayed" type="checkbox" name="ct-email-displayed">
+                  <label class="usa-checkbox__label" for="ct-email-displayed"></label>
+                </div>
+              </div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-email-required" type="checkbox" name="ct-email-required" disabled>
+                  <label class="usa-checkbox__label" for="ct-email-required"></label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alternate Email Address -->
+            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: center; padding: 2rem 0;">
+              <div style="font-size: 1.6rem;">Alternate Email Address</div>
+              <div style="font-size: 1.6rem; color: #1b1b1b;">Business Contact Alternate Email Address</div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-altemail-displayed" type="checkbox" name="ct-altemail-displayed">
+                  <label class="usa-checkbox__label" for="ct-altemail-displayed"></label>
+                </div>
+              </div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-altemail-required" type="checkbox" name="ct-altemail-required" disabled>
+                  <label class="usa-checkbox__label" for="ct-altemail-required"></label>
+                </div>
+              </div>
             </div>
 
           </div>
 
           <div class="app-builder-button-container">
             <a href="business-address-preview.html" class="usa-button usa-button--outline">Back</a>
-            <a href="#" class="usa-button">Next</a>
+            <div style="display: flex; gap: 1rem;">
+              <a href="#" class="usa-button usa-button--outline">Skip</a>
+              <button id="btn-next" class="usa-button" disabled onclick="window.location.href='#'">Next</button>
+            </div>
           </div>
         </div>
       </div>
@@ -351,12 +323,26 @@
     </main>
   </div>
   <script>
-    document.getElementById('bizcontacts-displayed').addEventListener('change', function() {
-      var reveal = document.getElementById('contacts-reveal');
-      reveal.classList.toggle('is-visible', this.checked);
+    document.getElementById('contact-instructions').addEventListener('input', function() {
+      var remaining = 2500 - this.value.length;
+      document.getElementById('contact-instructions-count').textContent = remaining + ' characters left';
     });
 
-    document.querySelectorAll('#ct-phone-displayed, #ct-altphone-displayed, #ct-altemail-displayed').forEach(function(displayed) {
+    var displayedCheckboxes = document.querySelectorAll('[id$="-displayed"]');
+    var btnNext = document.getElementById('btn-next');
+
+    function updateNextButton() {
+      var anyChecked = Array.prototype.some.call(displayedCheckboxes, function(cb) {
+        return cb.checked;
+      });
+      btnNext.disabled = !anyChecked;
+    }
+
+    displayedCheckboxes.forEach(function(displayed) {
+      displayed.addEventListener('change', updateNextButton);
+    });
+
+    displayedCheckboxes.forEach(function(displayed) {
       var requiredId = displayed.id.replace('-displayed', '-required');
       var required = document.getElementById(requiredId);
       if (!required) return;
