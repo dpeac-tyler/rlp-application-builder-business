@@ -182,6 +182,21 @@
               <div style="font-weight: 700; font-size: 1.6rem;">Required</div>
             </div>
 
+            <!-- Business Contacts master row -->
+            <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: center; padding: 2rem 0; background: #f0f0f0; margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem;">
+              <div style="font-size: 1.6rem; font-weight: 700;">Business Contacts</div>
+              <div style="font-size: 1.6rem; color: #1b1b1b;">Display business contact fields on the application</div>
+              <div>
+                <div class="usa-checkbox">
+                  <input class="usa-checkbox__input" id="ct-master-displayed" type="checkbox" name="ct-master-displayed">
+                  <label class="usa-checkbox__label" for="ct-master-displayed"></label>
+                </div>
+              </div>
+              <div></div>
+            </div>
+
+            <div id="contact-fields-section" style="display: none;">
+
             <!-- Title -->
             <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: center; padding: 2rem 0;">
               <div style="font-size: 1.6rem;">Title</div>
@@ -308,12 +323,14 @@
               </div>
             </div>
 
+            </div><!-- /contact-fields-section -->
+
           </div>
 
           <div class="app-builder-button-container">
             <a href="business-address-preview.html" class="usa-button usa-button--outline">Back</a>
             <div style="display: flex; gap: 1rem;">
-              <a href="#" class="usa-button usa-button--outline">Skip</a>
+              <a href="#" id="btn-skip" class="usa-button usa-button--outline">Skip</a>
               <button id="btn-next" class="usa-button" disabled onclick="window.location.href='#'">Next</button>
             </div>
           </div>
@@ -328,23 +345,60 @@
       document.getElementById('contact-instructions-count').textContent = remaining + ' characters left';
     });
 
-    var displayedCheckboxes = document.querySelectorAll('[id$="-displayed"]');
+    var masterDisplayed = document.getElementById('ct-master-displayed');
+    var fieldsSection = document.getElementById('contact-fields-section');
     var btnNext = document.getElementById('btn-next');
+    var btnSkip = document.getElementById('btn-skip');
 
-    function updateNextButton() {
-      var anyChecked = Array.prototype.some.call(displayedCheckboxes, function(cb) {
-        return cb.checked;
-      });
-      btnNext.disabled = !anyChecked;
-    }
+    var lockedDisplayedIds = ['ct-title-displayed', 'ct-firstname-displayed', 'ct-lastname-displayed', 'ct-email-displayed'];
+    var lockedRequiredIds = lockedDisplayedIds.map(function(id) { return id.replace('-displayed', '-required'); });
+    var allLockedIds = lockedDisplayedIds.concat(lockedRequiredIds);
 
-    displayedCheckboxes.forEach(function(displayed) {
-      displayed.addEventListener('change', updateNextButton);
+    masterDisplayed.addEventListener('change', function() {
+      var enabled = this.checked;
+
+      fieldsSection.style.display = enabled ? '' : 'none';
+      btnSkip.style.pointerEvents = enabled ? 'none' : '';
+      btnSkip.style.opacity = enabled ? '0.4' : '';
+      btnNext.disabled = !enabled;
+
+      if (enabled) {
+        // Lock required pairs: checked + not disabled (avoids opacity wash-out from disabled CSS),
+        // pointer-events:none on the wrapper prevents clicking
+        allLockedIds.forEach(function(id) {
+          var cb = document.getElementById(id);
+          cb.checked = true;
+          cb.disabled = false;
+          cb.parentElement.style.pointerEvents = 'none';
+          cb.parentElement.style.opacity = '0.55';
+        });
+        // Ensure optional displayed checkboxes are interactive
+        fieldsSection.querySelectorAll('[id$="-displayed"]').forEach(function(cb) {
+          if (lockedDisplayedIds.indexOf(cb.id) === -1) cb.disabled = false;
+        });
+      } else {
+        // Restore locked checkboxes to unchecked + clickable
+        allLockedIds.forEach(function(id) {
+          var cb = document.getElementById(id);
+          cb.checked = false;
+          cb.parentElement.style.pointerEvents = '';
+          cb.parentElement.style.opacity = '';
+        });
+        // Reset optional rows
+        fieldsSection.querySelectorAll('[id$="-displayed"]').forEach(function(cb) {
+          if (lockedDisplayedIds.indexOf(cb.id) === -1) {
+            cb.checked = false;
+            var reqCb = document.getElementById(cb.id.replace('-displayed', '-required'));
+            if (reqCb) { reqCb.checked = false; reqCb.disabled = true; }
+          }
+        });
+      }
     });
 
-    displayedCheckboxes.forEach(function(displayed) {
-      var requiredId = displayed.id.replace('-displayed', '-required');
-      var required = document.getElementById(requiredId);
+    // Optional displayed checkboxes gate their Required counterpart
+    fieldsSection.querySelectorAll('[id$="-displayed"]').forEach(function(displayed) {
+      if (lockedDisplayedIds.indexOf(displayed.id) !== -1) return;
+      var required = document.getElementById(displayed.id.replace('-displayed', '-required'));
       if (!required) return;
       displayed.addEventListener('change', function() {
         required.disabled = !this.checked;
